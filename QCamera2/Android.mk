@@ -38,8 +38,8 @@ LOCAL_SRC_FILES += \
         HAL3/QCamera3CropRegionMapper.cpp \
         HAL3/QCamera3StreamMem.cpp
 
-LOCAL_CFLAGS := -Wall -Wextra -Werror \
-		-Wno-error=unused-parameter
+LOCAL_CFLAGS := -Wall -Wextra -Werror
+
 #HAL 1.0 source
 
 ifeq ($(TARGET_SUPPORT_HAL1),false)
@@ -103,8 +103,8 @@ LOCAL_C_INCLUDES := \
         $(LOCAL_PATH)/util \
         $(LOCAL_PATH)/HAL3 \
         hardware/libhardware/include/hardware \
-        hardware/qcom/media/msm8998/libstagefrighthw \
-        hardware/qcom/media/msm8998/mm-core/inc \
+        $(QCOM_MEDIA_ROOT)/libstagefrighthw \
+        $(QCOM_MEDIA_ROOT)/mm-core/inc \
         system/core/include/cutils \
         system/core/include/system \
         system/media/camera/include/system
@@ -130,9 +130,7 @@ ifneq (,$(filter msm8996 sdm660 msm8998,$(TARGET_BOARD_PLATFORM)))
     LOCAL_CFLAGS += -DUBWC_PRESENT
 endif
 
-ifneq (,$(filter msm8996 msm8998,$(TARGET_BOARD_PLATFORM)))
-    LOCAL_CFLAGS += -DTARGET_MSM8996
-endif
+LOCAL_CFLAGS += -DTARGET_MSM8996
 
 LOCAL_CFLAGS += -DUSE_CAMERA_METABUFFER_UTILS
 
